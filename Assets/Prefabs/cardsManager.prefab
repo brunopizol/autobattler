@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7015795545775812551
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7015795545775812552}
+  - component: {fileID: 7015795545775812553}
+  m_Layer: 0
+  m_Name: cardsManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7015795545775812552
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7015795545775812551}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 127.56994, y: 9.175049, z: 26.718445}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7015795545775812553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7015795545775812551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1e2916ef16d9774c87cee41506acf18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  board: {fileID: 0}
+  deck_01:
+  - {fileID: 2213135576362897782, guid: 7ddc78d4a03d8b946990e369d5d2a999, type: 3}
+  - {fileID: 2213135576362897782, guid: c37925077b245f244a0246538b06dee7, type: 3}
+  deck_02:
+  - {fileID: 5923948139068819976, guid: 7251614065cdef6468283e96b3d9809e, type: 3}
+  deck_03:
+  - {fileID: 1557873818891343451, guid: 2e3e8bcd8ac2b564ba5e9fcacf3f9db5, type: 3}
+  deck_04:
+  - {fileID: 2213135576362897782, guid: a6e1cb1979afdee4db8ec66422e7217b, type: 3}
+  deck_05:
+  - {fileID: 0}
+  boardBag:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  playerManager: {fileID: 0}
+  level: 1
+  enableRoll: 0

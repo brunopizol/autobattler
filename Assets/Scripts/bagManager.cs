@@ -16,4 +16,17 @@ public class bagManager : MonoBehaviour
     {
         
     }
+
+    public int returnEmptySlot()
+    {
+        for(int i=0; i<slots.Length; i++)
+        {
+            if (slots[i].GetComponent<Slot>().isEmpty == true)
+            {
+                return i;
+            }
+        }
+
+        return 99;
+    }
 }

@@ -55,6 +55,7 @@ public class DragTransform : MonoBehaviour
             if(!onSlot){
             tempTransform.x =rayPoint.x;
             tempTransform.z =rayPoint.z;
+            tempTransform.y = transform.position.y;
             transform.position = tempTransform;
             }
             
@@ -64,7 +65,18 @@ public class DragTransform : MonoBehaviour
     private void OnTriggerStay(Collider other) {
         if(other.CompareTag("tile") && onSlot && preparingTime){
             print("colliding");
-            transform.position = other.gameObject.transform.position;
+            Vector3 temptrans = transform.position;
+            temptrans.x =  other.gameObject.transform.position.x;
+            temptrans.z =  other.gameObject.transform.position.z;
+            transform.position = temptrans;
+        }
+        if(other.CompareTag("slot") && onSlot && preparingTime){
+            print("colliding");
+            Vector3 temptrans = transform.position;
+            temptrans.x =  other.gameObject.transform.position.x;
+            temptrans.z =  other.gameObject.transform.position.z;
+            transform.position = temptrans;
+            // transform.position = other.gameObject.transform.position;
         }
     }
 
@@ -72,11 +84,17 @@ public class DragTransform : MonoBehaviour
         if(other.CompareTag("tile") && preparingTime){
             isOnSlotArea = true;
         }
+        if(other.CompareTag("slot") && preparingTime){
+            isOnSlotArea = true;
+        }
     }
     private void OnTriggerExit(Collider other) {
         if(other.CompareTag("tile")&& preparingTime){
             isOnSlotArea = false;
-        }
+     
+     if(other.CompareTag("slot")&& preparingTime){
+            isOnSlotArea = false;
+        }   }
     }
 }
  
