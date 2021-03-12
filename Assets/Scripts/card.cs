@@ -47,10 +47,19 @@ public class card : MonoBehaviour
 
     public void invokePiece()
     {
+
+        if ((playermanager.GetComponent<playerManager>().gold - cost) >= 0)
+        {
+            playermanager.GetComponent<playerManager>().gold -= cost;
+
+            if (cardManager.GetComponent<cardsManager>().invokePiece(this.gameObject))
+            {
+                cardManager.GetComponent<cardsManager>().removeCardBoard(this.gameObject);
+                Destroy(this.gameObject, 0.25f);
+            }
+        }
+
         
-        cardManager.GetComponent<cardsManager>().invokePiece(this.gameObject);
-        cardManager.GetComponent<cardsManager>().removeCardBoard(this.gameObject);
-        Destroy(this.gameObject, 0.25f);
     }
     
 

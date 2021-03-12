@@ -19,6 +19,7 @@ public class cardsManager : MonoBehaviour
     public GameObject bagManager;
     public int level;
     public bool enableRoll;
+    public bool startStage;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +27,7 @@ public class cardsManager : MonoBehaviour
         bagManager = GameObject.Find("bagManager");
         level = playerManager.GetComponent<playerManager>().level;
         enableRoll = true;
+        startStage = true;
         Roll();
 
     }
@@ -63,7 +65,7 @@ public class cardsManager : MonoBehaviour
                 boardBag.Add(newcard);
 
 
-                print("gerou carta 1");
+                //print("gerou carta 1");
                 //}
 
                 break;
@@ -154,28 +156,33 @@ public class cardsManager : MonoBehaviour
         return temp;
     }
 
-    public void invokePiece(GameObject obj)
+    public bool invokePiece(GameObject obj)
     {
         for (int i = 0; i < boardBag.Count; i++)
         {
             if (obj.GetComponent<card>().code == boardBag[i].GetComponent<card>().code)
             {
+                print("slot length: " + bagManager.GetComponent<bagManager>().slots.Length);
                 for(int j=0; j< bagManager.GetComponent<bagManager>().slots.Length; j++)
                 {
-                    if (bagManager.GetComponent<bagManager>().slots[i].GetComponent<Slot>().isEmpty == true)
+                    if (bagManager.GetComponent<bagManager>().slots[j].GetComponent<Slot>().isEmpty == true)
                     {
-                        var piece = Instantiate(obj.GetComponent<card>().Prefab, bagManager.GetComponent<bagManager>().slots[i].transform.position, Quaternion.identity);
-                        bagManager.GetComponent<bagManager>().slots[i].GetComponent<Slot>().codePiece = obj.GetComponent<card>().code;
-                        bagManager.GetComponent<bagManager>().slots[i].GetComponent<Slot>().isEmpty = false;
+                        var piece = Instantiate(obj.GetComponent<card>().Prefab, bagManager.GetComponent<bagManager>().slots[j].transform.position, Quaternion.identity);
+                        bagManager.GetComponent<bagManager>().slots[j].GetComponent<Slot>().codePiece = obj.GetComponent<card>().code;
+                        bagManager.GetComponent<bagManager>().slots[j].GetComponent<Slot>().isEmpty = false;
 
-                        break;
+                        return true;
                     }
-                    else { print("newnhum slot"); }
+                    //else { print("newnhum slot"); }
                 }
+
+                return false;
                 
 
             }
         }
+
+        return false;
 
     }
 
@@ -187,6 +194,8 @@ public class cardsManager : MonoBehaviour
         float deck03 = 0;
         float deck04 = 0;
         float deck05 = 0;
+
+
 
         switch (level)
         {
@@ -257,15 +266,41 @@ public class cardsManager : MonoBehaviour
                 break;
         }
         print("bag length: " + boardBag.Count);
-        if (boardBag.Count < 10 && playerManager.GetComponent<playerManager>().gold > 3)
+        if (startStage)
         {
+            startStage = false;
             print("start");
+            playerManager.GetComponent<playerManager>().gold -= 3;
+            probability(deck01, deck02, deck03, deck04, deck05);
+        }
+        else if (boardBag.Count < 10 && playerManager.GetComponent<playerManager>().gold > 3)
+        {
+            print("roll");
+            clearAllBag();
             playerManager.GetComponent<playerManager>().gold -= 3;
             probability(deck01, deck02, deck03, deck04, deck05);
         }
 
 
 
+    }
+
+    public void clearAllBag()
+    {
+        print("entrou em clear");
+        print("valor de count: " + boardBag.Count);
+        for(int i=0; i< boardBag.Count; i++)
+        {
+            if (boardBag[i] == null)
+            {
+                print("deu merda");
+            }
+            GameObject temp = boardBag[i];
+            boardBag.Remove(temp);
+            Destroy(temp.gameObject);
+            print("valor de i: " + i);
+
+        }
     }
 
     public void probability(float deck01, float deck02, float deck03, float deck04, float deck05)
