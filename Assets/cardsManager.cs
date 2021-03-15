@@ -20,12 +20,14 @@ public class cardsManager : MonoBehaviour
     public int level;
     public bool enableRoll;
     public bool startStage;
+    public bool boardLock;
 
     // Start is called before the first frame update
     void Start()
     {
         bagManager = GameObject.Find("bagManager");
         level = playerManager.GetComponent<playerManager>().level;
+        boardLock = false;
         enableRoll = true;
         startStage = true;
         Roll();
@@ -48,6 +50,11 @@ public class cardsManager : MonoBehaviour
         }
     }
 
+    public void lockSystem()
+    {
+        boardLock = !boardLock;
+    }
+
 
 
     public void instantiateCard(int decknumber)
@@ -60,6 +67,9 @@ public class cardsManager : MonoBehaviour
                 GameObject newcard = (GameObject)Instantiate(deck_01[Random.Range(0, deck_01.Length)], transform.position, Quaternion.identity);
                 newcard.transform.parent = board.transform;
                 newcard.transform.localScale = new Vector3(1, 1, 1);
+                Vector3 positiontemp = newcard.transform.position;
+                positiontemp.y = 2.7f;
+                newcard.transform.position =positiontemp;
 
                 newcard.GetComponent<card>().code = generateCode();
                 boardBag.Add(newcard);
@@ -75,6 +85,9 @@ public class cardsManager : MonoBehaviour
                 GameObject newcard2 = (GameObject)Instantiate(deck_02[Random.Range(0, deck_01.Length)], transform.position, Quaternion.identity);
                 newcard2.transform.parent = board.transform;
                 newcard2.transform.localScale = new Vector3(1, 1, 1);
+                Vector3 positiontemp2 = newcard2.transform.position;
+                positiontemp2.y = 0.7f;
+                newcard2.transform.position = positiontemp2;
 
                 newcard2.GetComponent<card>().code = generateCode();
                 boardBag.Add(newcard2);
@@ -87,7 +100,9 @@ public class cardsManager : MonoBehaviour
                 GameObject newcard3 = (GameObject)Instantiate(deck_03[Random.Range(0, deck_01.Length)], transform.position, Quaternion.identity);
                 newcard3.transform.parent = board.transform;
                 newcard3.transform.localScale = new Vector3(1, 1, 1);
-
+                Vector3 positiontemp3 = newcard3.transform.position;
+                positiontemp3.y = 0.7f;
+                newcard3.transform.position = positiontemp3;
                 newcard3.GetComponent<card>().code = generateCode();
                 boardBag.Add(newcard3);
                 //}
@@ -266,14 +281,15 @@ public class cardsManager : MonoBehaviour
                 break;
         }
         print("bag length: " + boardBag.Count);
-        if (startStage)
+        if (startStage && !boardLock)
         {
             startStage = false;
             print("start");
-            playerManager.GetComponent<playerManager>().gold -= 3;
+            //playerManager.GetComponent<playerManager>().gold -= 3;
             probability(deck01, deck02, deck03, deck04, deck05);
         }
-        else if (boardBag.Count < 10 && playerManager.GetComponent<playerManager>().gold > 3)
+        //else if (boardBag.Count < 10 && playerManager.GetComponent<playerManager>().gold > 3)
+        else if (playerManager.GetComponent<playerManager>().gold >= 3 && !boardLock)
         {
             print("roll");
             clearAllBag();
@@ -289,18 +305,29 @@ public class cardsManager : MonoBehaviour
     {
         print("entrou em clear");
         print("valor de count: " + boardBag.Count);
-        for(int i=0; i< boardBag.Count; i++)
+        int lengthCount = boardBag.Count;
+
+        foreach (GameObject b in boardBag)
         {
-            if (boardBag[i] == null)
-            {
-                print("deu merda");
-            }
-            GameObject temp = boardBag[i];
-            boardBag.Remove(temp);
+            GameObject temp = b;
             Destroy(temp.gameObject);
-            print("valor de i: " + i);
 
         }
+        boardBag.Clear();
+
+        //for(int i=0; i< lengthCount; i++)
+        //{
+        //    if (boardBag[i] == null)
+        //    {
+        //        print("deu merda");
+        //    }
+        //    else {
+        //        GameObject temp = boardBag[i];
+        //        boardBag.Remove(temp);
+        //        Destroy(temp.gameObject);
+        //        print("valor de i: " + i);
+        //        }
+        //}
     }
 
     public void probability(float deck01, float deck02, float deck03, float deck04, float deck05)
