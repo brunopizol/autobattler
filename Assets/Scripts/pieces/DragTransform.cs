@@ -6,10 +6,11 @@ public class DragTransform : MonoBehaviour
 {
      private Color mouseOverColor = Color.blue;
     private Color originalColor = Color.yellow;
-    private bool dragging = false;
+    public bool dragging = false;
     private float distance;
     public bool onSlot = false;
     private bool isOnSlotArea = false;
+    private bool getNewPosition = false;
     public bool preparingTime = true;
     private Vector3 startPosition;
 
@@ -43,6 +44,8 @@ public class DragTransform : MonoBehaviour
             transform.position = startPosition;
 
         }
+
+
     }
  
     void Update()
@@ -53,16 +56,19 @@ public class DragTransform : MonoBehaviour
             Vector3 rayPoint = ray.GetPoint(distance);
             Vector3 tempTransform = transform.position;
             if(!onSlot){
+
             tempTransform.x =rayPoint.x;
             tempTransform.z =rayPoint.z;
             tempTransform.y = transform.position.y;
             transform.position = tempTransform;
+
             }
             
         }
     }
     
     private void OnTriggerStay(Collider other) {
+
         if(other.CompareTag("tile") && onSlot && preparingTime){
             print("colliding");
             Vector3 temptrans = transform.position;
@@ -85,15 +91,26 @@ public class DragTransform : MonoBehaviour
             isOnSlotArea = true;
         }
         if(other.CompareTag("slot") && preparingTime){
+            getNewPosition = true;
             isOnSlotArea = true;
         }
+        if(other.CompareTag("slot") && preparingTime && getNewPosition)
+        {
+            Vector3 temptrans = transform.position;
+            temptrans.x = other.gameObject.transform.position.x;
+            temptrans.z = other.gameObject.transform.position.z;
+            startPosition = temptrans;
+            
+        }
     }
+
     private void OnTriggerExit(Collider other) {
         if(other.CompareTag("tile")&& preparingTime){
             isOnSlotArea = false;
      
      if(other.CompareTag("slot")&& preparingTime){
-            isOnSlotArea = false;
+                getNewPosition = false;
+                isOnSlotArea = false;
         }   }
     }
 }

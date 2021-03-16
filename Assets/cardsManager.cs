@@ -182,9 +182,12 @@ public class cardsManager : MonoBehaviour
                 {
                     if (bagManager.GetComponent<bagManager>().slots[j].GetComponent<Slot>().isEmpty == true)
                     {
-                        var piece = Instantiate(obj.GetComponent<card>().Prefab, bagManager.GetComponent<bagManager>().slots[j].transform.position, Quaternion.identity);
+                        GameObject piece = (GameObject)Instantiate(obj.GetComponent<card>().Prefab, bagManager.GetComponent<bagManager>().slots[j].transform.position, Quaternion.identity);
                         bagManager.GetComponent<bagManager>().slots[j].GetComponent<Slot>().codePiece = obj.GetComponent<card>().code;
                         bagManager.GetComponent<bagManager>().slots[j].GetComponent<Slot>().isEmpty = false;
+                        Vector3 temp = piece.transform.position;
+                        temp.y = 0.75f;
+                        piece.transform.position = temp;
 
                         return true;
                     }
