@@ -34,6 +34,24 @@ public class playerManager : MonoBehaviour
 
     }
 
+    public void updateGUIGold(int g)
+    {
+       // lifeBar.fillAmount = life / 100;
+       gold = g;
+        gold_counter.text = gold.ToString();
+        level_counter.text = level.ToString();
+
+    }
+
+    public void updateGUILife(float f)
+    {
+       // lifeBar.fillAmount = life / 100;
+        life = f;
+        gold_counter.text = gold.ToString();
+        level_counter.text = level.ToString();
+
+    }
+
     // Update is called once per frame
     void Update()
     {

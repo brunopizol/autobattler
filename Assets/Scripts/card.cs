@@ -20,7 +20,7 @@ public class card : MonoBehaviour
     public GameObject bagManager;
     public GameObject playermanager;
     public GameObject cardManager;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -43,29 +43,32 @@ public class card : MonoBehaviour
 
     }
 
- 
+
 
     public void invokePiece()
     {
 
         if ((playermanager.GetComponent<playerManager>().gold - cost) >= 0)
         {
-            playermanager.GetComponent<playerManager>().gold -= cost;
+
 
             if (cardManager.GetComponent<cardsManager>().invokePiece(this.gameObject))
             {
+                playermanager.GetComponent<playerManager>().gold -= cost;
+                playermanager.GetComponent<playerManager>().updateGUI();
                 cardManager.GetComponent<cardsManager>().removeCardBoard(this.gameObject);
                 Destroy(this.gameObject, 0.25f);
             }
         }
-
         
+
+
     }
-    
+
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

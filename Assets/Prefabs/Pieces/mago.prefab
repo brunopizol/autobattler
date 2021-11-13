@@ -107,6 +107,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0eedfc9486234a841ba13733c5b9be1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MaterialHighlight: {fileID: 2100000, guid: b366d94cb4d74f64d8a75c0ef583ff16, type: 2}
+  MaterialStart: {fileID: 2100000, guid: db0190f041999c34d9824612296ac55b, type: 2}
   dragging: 0
   onSlot: 0
   preparingTime: 1

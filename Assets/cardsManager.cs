@@ -59,82 +59,86 @@ public class cardsManager : MonoBehaviour
 
     public void instantiateCard(int decknumber)
     {
-        switch (decknumber)
+        if (boardBag.Count < 9)
         {
-            case 1:
-                //if (boardbag.count < 9)
-                //{
-                GameObject newcard = (GameObject)Instantiate(deck_01[Random.Range(0, deck_01.Length)], transform.position, Quaternion.identity);
-                newcard.transform.parent = board.transform;
-                newcard.transform.localScale = new Vector3(1, 1, 1);
-                Vector3 positiontemp = newcard.transform.position;
-                positiontemp.y = 2.7f;
-                newcard.transform.position =positiontemp;
+            switch (decknumber)
+            {
+                case 1:
+                    //if (boardbag.count < 9)
+                    //{
+                    GameObject newcard = (GameObject)Instantiate(deck_01[Random.Range(0, deck_01.Length)], transform.position, Quaternion.identity);
+                    newcard.transform.parent = board.transform;
+                    newcard.transform.localScale = new Vector3(1, 1, 1);
+                    Vector3 positiontemp = newcard.transform.position;
+                    positiontemp.y = 2.7f;
+                    newcard.transform.position = positiontemp;
 
-                newcard.GetComponent<card>().code = generateCode();
-                boardBag.Add(newcard);
-
-
-                //print("gerou carta 1");
-                //}
-
-                break;
-            case 2:
-                //if (boardBag.Count < 9)
-                //{
-                GameObject newcard2 = (GameObject)Instantiate(deck_02[Random.Range(0, deck_01.Length)], transform.position, Quaternion.identity);
-                newcard2.transform.parent = board.transform;
-                newcard2.transform.localScale = new Vector3(1, 1, 1);
-                Vector3 positiontemp2 = newcard2.transform.position;
-                positiontemp2.y = 0.7f;
-                newcard2.transform.position = positiontemp2;
-
-                newcard2.GetComponent<card>().code = generateCode();
-                boardBag.Add(newcard2);
-                //}
-                print("gerou carta 2");
-                break;
-            case 3:
-                //if (boardBag.Count < 9)
-                //{
-                GameObject newcard3 = (GameObject)Instantiate(deck_03[Random.Range(0, deck_01.Length)], transform.position, Quaternion.identity);
-                newcard3.transform.parent = board.transform;
-                newcard3.transform.localScale = new Vector3(1, 1, 1);
-                Vector3 positiontemp3 = newcard3.transform.position;
-                positiontemp3.y = 0.7f;
-                newcard3.transform.position = positiontemp3;
-                newcard3.GetComponent<card>().code = generateCode();
-                boardBag.Add(newcard3);
-                //}
-                print("gerou carta 3");
-                break;
-            case 4:
-                //if (boardBag.Count < 9)
-                //{
-                GameObject newcard4 = (GameObject)Instantiate(deck_04[Random.Range(0, deck_04.Length)], transform.position, Quaternion.identity);
-                newcard4.transform.parent = board.transform;
-                newcard4.transform.localScale = new Vector3(1, 1, 1);
-
-                newcard4.GetComponent<card>().code = generateCode();
-                boardBag.Add(newcard4);
-                // }
-                print("gerou carta 4");
-                break;
-            case 5:
-                //if (boardBag.Count < 9)
-                //{
-                GameObject newcard5 = (GameObject)Instantiate(deck_05[Random.Range(0, deck_05.Length)], transform.position, Quaternion.identity);
-                newcard5.transform.parent = board.transform;
-                newcard5.transform.localScale = new Vector3(1, 1, 1);
+                    newcard.GetComponent<card>().code = generateCode();
+                    boardBag.Add(newcard);
 
 
-                newcard5.GetComponent<card>().code = generateCode();
-                boardBag.Add(newcard5);
-                //}
-                print("gerou carta 5");
-                break;
+                    //print("gerou carta 1");
+                    //}
+
+                    break;
+                case 2:
+                    //if (boardBag.Count < 9)
+                    //{
+                    GameObject newcard2 = (GameObject)Instantiate(deck_02[Random.Range(0, deck_01.Length)], transform.position, Quaternion.identity);
+                    newcard2.transform.parent = board.transform;
+                    newcard2.transform.localScale = new Vector3(1, 1, 1);
+                    Vector3 positiontemp2 = newcard2.transform.position;
+                    positiontemp2.y = 0.7f;
+                    newcard2.transform.position = positiontemp2;
+
+                    newcard2.GetComponent<card>().code = generateCode();
+                    boardBag.Add(newcard2);
+                    //}
+                    print("gerou carta 2");
+                    break;
+                case 3:
+                    //if (boardBag.Count < 9)
+                    //{
+                    GameObject newcard3 = (GameObject)Instantiate(deck_03[Random.Range(0, deck_01.Length)], transform.position, Quaternion.identity);
+                    newcard3.transform.parent = board.transform;
+                    newcard3.transform.localScale = new Vector3(1, 1, 1);
+                    Vector3 positiontemp3 = newcard3.transform.position;
+                    positiontemp3.y = 0.7f;
+                    newcard3.transform.position = positiontemp3;
+                    newcard3.GetComponent<card>().code = generateCode();
+                    boardBag.Add(newcard3);
+                    //}
+                    print("gerou carta 3");
+                    break;
+                case 4:
+                    //if (boardBag.Count < 9)
+                    //{
+                    GameObject newcard4 = (GameObject)Instantiate(deck_04[Random.Range(0, deck_04.Length)], transform.position, Quaternion.identity);
+                    newcard4.transform.parent = board.transform;
+                    newcard4.transform.localScale = new Vector3(1, 1, 1);
+
+                    newcard4.GetComponent<card>().code = generateCode();
+                    boardBag.Add(newcard4);
+                    // }
+                    print("gerou carta 4");
+                    break;
+                case 5:
+                    //if (boardBag.Count < 9)
+                    //{
+                    GameObject newcard5 = (GameObject)Instantiate(deck_05[Random.Range(0, deck_05.Length)], transform.position, Quaternion.identity);
+                    newcard5.transform.parent = board.transform;
+                    newcard5.transform.localScale = new Vector3(1, 1, 1);
+
+
+                    newcard5.GetComponent<card>().code = generateCode();
+                    boardBag.Add(newcard5);
+                    //}
+                    print("gerou carta 5");
+                    break;
+            }
+            enableRoll = true;
         }
-        enableRoll = true;
+
 
 
     }
@@ -178,7 +182,7 @@ public class cardsManager : MonoBehaviour
             if (obj.GetComponent<card>().code == boardBag[i].GetComponent<card>().code)
             {
                 print("slot length: " + bagManager.GetComponent<bagManager>().slots.Length);
-                for(int j=0; j< bagManager.GetComponent<bagManager>().slots.Length; j++)
+                for (int j = 0; j < bagManager.GetComponent<bagManager>().slots.Length; j++)
                 {
                     if (bagManager.GetComponent<bagManager>().slots[j].GetComponent<Slot>().isEmpty == true)
                     {
@@ -195,7 +199,7 @@ public class cardsManager : MonoBehaviour
                 }
 
                 return false;
-                
+
 
             }
         }
@@ -297,6 +301,9 @@ public class cardsManager : MonoBehaviour
             print("roll");
             clearAllBag();
             playerManager.GetComponent<playerManager>().gold -= 3;
+            playerManager.GetComponent<playerManager>().updateGUI();
+
+            // playerManager.GetComponent<playerManager>().updateGUIGold(playerManager.GetComponent<playerManager>().gold-3);
             probability(deck01, deck02, deck03, deck04, deck05);
         }
 

@@ -6,6 +6,8 @@ public class DragTransform : MonoBehaviour
 {
      private Color mouseOverColor = Color.blue;
     private Color originalColor = Color.yellow;
+    public Material MaterialHighlight;
+    public Material MaterialStart;
     public bool dragging = false;
     private float distance;
     public bool onSlot = false;
@@ -15,18 +17,22 @@ public class DragTransform : MonoBehaviour
     private Vector3 startPosition;
 
     private void Start() {
+
+        MaterialStart = GetComponent<MeshRenderer> ().material;
         startPosition = transform.position;
     }
  
    
     void OnMouseEnter()
     {
-        GetComponent<Renderer>().material.color = mouseOverColor;
+        // GetComponent<Renderer>().material.color = mouseOverColor;
+        GetComponent<MeshRenderer> ().material = MaterialHighlight;
     }
  
     void OnMouseExit()
     {
-        GetComponent<Renderer>().material.color = originalColor;
+        // GetComponent<Renderer>().material.color = originalColor;
+        GetComponent<MeshRenderer> ().material = MaterialStart;
     }
  
     void OnMouseDown()

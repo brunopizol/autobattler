@@ -23,7 +23,9 @@ public class bagManager : MonoBehaviour
         {
             if (slots[i].GetComponent<Slot>().isEmpty == true)
             {
+                print("valord e slot: " + i);
                 return i;
+                
             }
         }
 
