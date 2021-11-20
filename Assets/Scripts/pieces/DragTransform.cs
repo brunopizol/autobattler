@@ -75,15 +75,15 @@ public class DragTransform : MonoBehaviour
     
     private void OnTriggerStay(Collider other) {
 
-        if(other.CompareTag("tile") && onSlot && preparingTime){
-            print("colliding");
+        if(other.CompareTag("tile") && !onSlot && preparingTime){
+            print("colliding tile");
             Vector3 temptrans = transform.position;
             temptrans.x =  other.gameObject.transform.position.x;
             temptrans.z =  other.gameObject.transform.position.z;
             transform.position = temptrans;
         }
         if(other.CompareTag("slot") && onSlot && preparingTime){
-            print("colliding");
+            // print("colliding");
             Vector3 temptrans = transform.position;
             temptrans.x =  other.gameObject.transform.position.x;
             temptrans.z =  other.gameObject.transform.position.z;
@@ -108,6 +108,13 @@ public class DragTransform : MonoBehaviour
             startPosition = temptrans;
             
         }
+        // if(other.CompareTag("tile") && onSlot && preparingTime){
+        //     print("colliding tile");
+        //     Vector3 temptrans = transform.position;
+        //     temptrans.x =  other.gameObject.transform.position.x;
+        //     temptrans.z =  other.gameObject.transform.position.z;
+        //     transform.position = temptrans;
+        // }
     }
 
     private void OnTriggerExit(Collider other) {

@@ -9,6 +9,7 @@ TagManager:
   - bagManager
   - playerManager
   - cardManager
+  - tank
   layers:
   - Default
   - TransparentFX
